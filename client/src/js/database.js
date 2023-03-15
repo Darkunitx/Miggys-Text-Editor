@@ -1,4 +1,3 @@
-import { request } from 'express';
 import { openDB } from 'idb';
 
 const initdb = async () =>
@@ -22,7 +21,7 @@ const tx = jateDb.transaction('jate', 'readwrite');
 
 const store = tx.objectStore('jate');
 
-const request = store.put({ todo: content } );
+const request = store.put({ id: 1, value: content } );
 
 const result = await request;
 console.log('data added to database', result);
@@ -39,7 +38,7 @@ const tx = jateDb.transaction('jate', 'readonly');
 
 const store = tx.objectStore('jate');
 
-const request = store.getAll();
+const request = store.get(1);
 
 const result = await request;
 console.log('result.value', result);
